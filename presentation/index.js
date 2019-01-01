@@ -1,10 +1,9 @@
-// Import React
-import React from 'react';
-
-// Import Spectacle Core tags
+import React from "react";
 import {
   BlockQuote,
   Cite,
+  Code,
+  CodePane,
   Deck,
   Heading,
   Image,
@@ -14,89 +13,99 @@ import {
   Quote,
   Slide,
   Text
-} from 'spectacle';
+} from "spectacle";
+import { createCustomTheme } from "./styles/theme-custom";
 
-// Import theme
-import createTheme from 'spectacle/lib/themes/default';
+/**
+ * create custom theme
+ */
+const customTheme = createCustomTheme();
 
 const images = {
-  formidagon: require('../assets/formidable-logo.svg'),
-  goodWork: require('../assets/good-work.gif')
+  formidagon: require("../assets/formidable-logo.svg"),
+  goodWork: require("../assets/good-work.gif")
 };
 
-// Require CSS
-require('normalize.css');
-
-const theme = createTheme(
-  {
-    primary: 'white',
-    secondary: '#1F2022',
-    tertiary: '#03A9FC',
-    quaternary: '#CECECE'
-  },
-  {
-    primary: 'Montserrat',
-    secondary: 'Helvetica'
-  }
-);
+// require CSS
+require("normalize.css");
 
 export default class Presentation extends React.Component {
   render() {
     return (
       <Deck
-        transition={['zoom', 'slide']}
+        transition={["zoom", "slide"]}
         transitionDuration={500}
-        theme={theme}
+        progress="pacman"
+        controls={false}
+        theme={customTheme}
       >
-        <Slide transition={['zoom']} bgColor="primary">
-          <Heading size={1} fit caps lineHeight={1} textColor="secondary">
-            Spectacle Boilerplate
+        <Slide transition={["zoom"]} bgColor="backgroundDefault">
+          <Heading size={1} fit>
+            danharris presentation starter
           </Heading>
-          <Text margin="10px 0 0" textColor="tertiary" fit bold>
-            open the presentation/index.js file to get started
-          </Text>
         </Slide>
         <Slide bgColor="secondary">
           <Image src={images.formidagon} width={800} />
         </Slide>
-        <Slide transition={['fade']} bgColor="tertiary">
-          <Heading size={6} textColor="primary" caps>
-            Typography
-          </Heading>
-          <Heading size={1} textColor="secondary">
-            Heading 1
-          </Heading>
-          <Heading size={2} textColor="secondary">
-            Heading 2
-          </Heading>
-          <Heading size={3} textColor="secondary">
-            Heading 3
-          </Heading>
-          <Heading size={4} textColor="secondary">
-            Heading 4
-          </Heading>
-          <Heading size={5} textColor="secondary">
-            Heading 5
-          </Heading>
-          <Text size={6} textColor="secondary">
-            Standard text
+        <Slide transition={["fade"]} bgColor="backgroundDefault">
+          <Heading size={1}>heading 1</Heading>
+          <Heading size={2}>heading 2</Heading>
+          <Heading size={3}>heading 3</Heading>
+          <Heading size={4}>heading 4</Heading>
+          <Heading size={5}>heading 5</Heading>
+          <Text>
+            Paragraph text lorem ipsum dolem sum do whatsy kung fu gangnam
+            style. <Code>const foo = bar; () => something;</Code> Twinkies blue
+            warehouse fund chocobos.
           </Text>
         </Slide>
-        <Slide transition={['fade']} bgColor="primary" textColor="tertiary">
-          <Heading size={6} textColor="secondary" caps>
-            Standard List
-          </Heading>
+        <Slide
+          transition={["fade"]}
+          bgColor="backgroundAlternate"
+          textColor="textAlternate"
+        >
+          <Heading size={1}>heading 1</Heading>
+          <Heading size={2}>heading 2</Heading>
+          <Heading size={3}>heading 3</Heading>
+          <Heading size={4}>heading 4</Heading>
+          <Heading size={5}>heading 5</Heading>
+          <Text>
+            Paragraph text lorem ipsum dolem sum do whatsy kung fu gangnam
+            style. <Code>const foo = bar;</Code> Twinkies blue warehouse fund
+            chocobos.
+          </Text>
+        </Slide>
+        <Slide
+          transition={["fade"]}
+          bgColor="backgroundDefault"
+          textColor="textDefault"
+        >
+          <Heading size={1}>standard list</Heading>
           <List>
-            <ListItem>Item 1</ListItem>
-            <ListItem>Item 2</ListItem>
-            <ListItem>Item 3</ListItem>
-            <ListItem>Item 4</ListItem>
+            <ListItem>item 1</ListItem>
+            <ListItem>item 2</ListItem>
+            <ListItem>item 3</ListItem>
+            <ListItem>item 4</ListItem>
           </List>
         </Slide>
-        <Slide transition={['fade']} bgColor="secondary" textColor="primary">
+        <Slide bgColor="backgroundDefault" textColor="textDefault">
+          <Heading size={1}>some code</Heading>
+          <CodePane
+            lang="jsx"
+            source={require("raw-loader!../assets/deck.example")}
+          />
+        </Slide>
+        <Slide
+          transition={["fade"]}
+          bgColor="backgroundDefault"
+          textColor="textDefault"
+        >
           <BlockQuote>
-            <Quote>Example Quote</Quote>
-            <Cite margin="10px 0 0 30px">Author</Cite>
+            <Quote>
+              quote lorem ipsum dolem sum do whatsy kung fu gangnam style.
+              Twinkies blue warehouse fund chocobos.
+            </Quote>
+            <Cite>author</Cite>
           </BlockQuote>
         </Slide>
         <Slide>

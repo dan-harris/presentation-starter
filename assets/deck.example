@@ -13,15 +13,5 @@ return (
         Wait What?
       </Heading>
     </Slide>
-    <Slide bgColor="primary" textColor="black" align="center top">
-      <Heading size={1} textColor="black" textFont="primary">
-        Thats right
-      </Heading>
-      <List>
-        <ListItem>Inline style based theme system</ListItem>
-        <ListItem>Autofit Text</ListItem>
-        <ListItem>PDF Export</ListItem>
-      </List>
-    </Slide>
   </Deck>
 )
