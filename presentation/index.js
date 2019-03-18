@@ -1,118 +1,85 @@
-import React from "react";
-import {
-  BlockQuote,
-  Cite,
-  Code,
-  CodePane,
-  Deck,
-  Heading,
-  Image,
-  List,
-  ListItem,
-  Notes,
-  Quote,
-  Slide,
-  Text
-} from "spectacle";
-import { createCustomTheme } from "./styles/theme-custom";
+import React from 'react';
+import { Deck, Slide } from 'spectacle';
+import CodeSlide from 'spectacle-code-slide';
+import preloader from 'spectacle/lib/utils/preloader';
+import { images } from './images';
+import './styles/globals.css';
+import './styles/prism-theme.css';
+import { createCustomTheme } from './styles/theme-custom';
+import { ImageSlide } from './templates/image-slide';
+import { ListSlide } from './templates/list-slide';
+import { ProfileLinksSlideContent } from './templates/profile-links-slide-content';
+import { ProfileSlideContent } from './templates/profile-slide-content';
+import { QuoteSlide } from './templates/quote-slide';
+import { TextSlideContent } from './templates/text-slide-content';
+import { TitleSlide } from './templates/title-slide';
 
 /**
  * create custom theme
  */
 const customTheme = createCustomTheme();
 
-const images = {
-  formidagon: require("../assets/formidable-logo.svg"),
-  goodWork: require("../assets/good-work.gif")
-};
+preloader(images);
 
-// require CSS
-require("normalize.css");
+/**
+ * reset CSS
+ */
+require('normalize.css');
 
 export default class Presentation extends React.Component {
   render() {
     return (
-      <Deck
-        transition={["zoom", "slide"]}
-        transitionDuration={500}
-        progress="pacman"
-        controls={false}
-        theme={customTheme}
-      >
-        <Slide transition={["zoom"]} bgColor="backgroundDefault">
-          <Heading size={1} fit>
-            danharris presentation starter
-          </Heading>
-        </Slide>
-        <Slide bgColor="secondary">
-          <Image src={images.formidagon} width={800} />
-        </Slide>
-        <Slide transition={["fade"]} bgColor="backgroundDefault">
-          <Heading size={1}>heading 1</Heading>
-          <Heading size={2}>heading 2</Heading>
-          <Heading size={3}>heading 3</Heading>
-          <Heading size={4}>heading 4</Heading>
-          <Heading size={5}>heading 5</Heading>
-          <Text>
-            Paragraph text lorem ipsum dolem sum do whatsy kung fu gangnam
-            style. <Code>const foo = bar; () => something;</Code> Twinkies blue
-            warehouse fund chocobos.
-          </Text>
+      <Deck transition={['fade', 'slide']} transitionDuration={500} progress="pacman" controls={false} theme={customTheme}>
+        <TitleSlide />
+        <Slide transition={['fade']} bgColor="backgroundDefault" bgImage={images.genericBGDefault} bgSize="auto">
+          <ProfileSlideContent />
         </Slide>
         <Slide
-          transition={["fade"]}
-          bgColor="backgroundAlternate"
+          transition={['fade']}
           textColor="textAlternate"
+          bgColor="backgroundAlternate"
+          bgImage={images.genericBGAlternate}
+          bgSize="auto"
         >
-          <Heading size={1}>heading 1</Heading>
-          <Heading size={2}>heading 2</Heading>
-          <Heading size={3}>heading 3</Heading>
-          <Heading size={4}>heading 4</Heading>
-          <Heading size={5}>heading 5</Heading>
-          <Text>
-            Paragraph text lorem ipsum dolem sum do whatsy kung fu gangnam
-            style. <Code>const foo = bar;</Code> Twinkies blue warehouse fund
-            chocobos.
-          </Text>
+          <ProfileLinksSlideContent />
         </Slide>
-        <Slide
-          transition={["fade"]}
+        <Slide bgColor="backgroundDefault" bgImage={images.genericBGDefault} bgSize="auto">
+          <TextSlideContent />
+        </Slide>
+        <Slide bgColor="backgroundAlternate" textColor="textAlternate" bgImage={images.genericBGAlternate} bgSize="auto">
+          <TextSlideContent />
+        </Slide>
+        <ListSlide />
+        <QuoteSlide />
+        <ImageSlide />
+        <CodeSlide
+          transition={[]}
+          lang="js"
           bgColor="backgroundDefault"
-          textColor="textDefault"
-        >
-          <Heading size={1}>standard list</Heading>
-          <List>
-            <ListItem>item 1</ListItem>
-            <ListItem>item 2</ListItem>
-            <ListItem>item 3</ListItem>
-            <ListItem>item 4</ListItem>
-          </List>
-        </Slide>
-        <Slide bgColor="backgroundDefault" textColor="textDefault">
-          <Heading size={1}>some code</Heading>
-          <CodePane
-            lang="jsx"
-            source={require("raw-loader!../assets/deck.example")}
-          />
-        </Slide>
-        <Slide
-          transition={["fade"]}
+          bgImage={images.genericBGDefault}
+          bgSize="auto"
+          code={require('raw-loader!../assets/home-page.ts.example')} // eslint-disable-line
+          ranges={[
+            { loc: [0, 52], title: 'Walking through some code' },
+            { loc: [0, 2], title: 'The Beginning' },
+            { loc: [1, 20] },
+            { loc: [10, 11], note: 'Heres a note!' },
+            { loc: [8, 10], image: images.goodWork },
+            { loc: [21, 25] }
+          ]}
+        />
+        <CodeSlide
+          transition={[]}
+          lang="js"
           bgColor="backgroundDefault"
-          textColor="textDefault"
-        >
-          <BlockQuote>
-            <Quote>
-              quote lorem ipsum dolem sum do whatsy kung fu gangnam style.
-              Twinkies blue warehouse fund chocobos.
-            </Quote>
-            <Cite>author</Cite>
-          </BlockQuote>
-        </Slide>
-        <Slide>
-          <Image src={images.goodWork} width={500} />
-          <Notes>gifs work too</Notes>
-        </Slide>
+          bgImage={images.genericBGDefault}
+          bgSize="auto"
+          code={require('raw-loader!../assets/index.cshtml.cs.example')} // eslint-disable-line
+          ranges={[{ loc: [0, 52], title: 'Walking through some code' }, { loc: [14, 26] }, { loc: [26, 33] }]}
+        />
       </Deck>
+      // <div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+      // <div>Icons made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
     );
   }
 }

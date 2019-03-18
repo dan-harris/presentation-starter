@@ -1,16 +1,16 @@
-import createTheme from "spectacle/lib/themes/default";
-import { createCode } from "./overrides/code";
-import { createCodePane } from "./overrides/code-pane";
-import { createGlobals } from "./overrides/globals";
-import { createHeading } from "./overrides/headings";
-import { createQuote } from "./overrides/quote";
-import { createText } from "./overrides/text";
-import { theme } from "./theme";
+import createTheme from 'spectacle/lib/themes/default';
+import { createCode } from './overrides/code';
+import { createCodePane } from './overrides/code-pane';
+import { createGlobals } from './overrides/globals';
+import { createHeading } from './overrides/headings';
+import { createQuote } from './overrides/quote';
+import { createText } from './overrides/text';
+import { theme } from './theme';
 
 /**
  * create the custom theme with spectacle js + overrides
  */
-export function createCustomTheme() {
+export const createCustomTheme = () => {
   // spectacle js create custom theme + overrides
   const { colors, fonts } = theme;
   const spectacleTheme = createTheme(colors, fonts);
@@ -37,4 +37,4 @@ export function createCustomTheme() {
       global
     }
   };
-}
+};

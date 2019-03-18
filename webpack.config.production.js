@@ -1,4 +1,5 @@
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 /* eslint-disable */
 
 var path = require("path");
@@ -10,8 +11,7 @@ module.exports = {
 
   output: {
     path: path.join(__dirname, "dist"),
-    filename: "bundle.js",
-    publicPath: "/dist/"
+    filename: "bundle.js"
   },
 
   plugins: [
@@ -19,7 +19,9 @@ module.exports = {
       "process.env": {
         NODE_ENV: JSON.stringify("production")
       }
-    })
+    }),
+    // copy assets to dist
+    new CopyWebpackPlugin([{ from: "./assets", to: "./" }])
   ],
 
   module: {
@@ -88,8 +90,8 @@ module.exports = {
   },
 
   optimization: {
-    minimize: true,
+    minimize: false
 
-    minimizer: [new UglifyJsPlugin()]
+    // minimizer: [new UglifyJsPlugin()]
   }
 };

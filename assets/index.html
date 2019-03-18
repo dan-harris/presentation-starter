@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width initial-scale=1 user-scalable=no"
+    />
+    <title>danharris</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans"
+      rel="stylesheet"
+    />
+    <style>
+      @font-face {
+        font-family: "Fira Code";
+        src: url("./assets/fonts/FiraCode-Light.woff2") format("woff2");
+        font-weight: 300;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: "Fira Code";
+        src: url("./assets/fonts/FiraCode-Regular.woff2") format("woff2");
+        font-weight: 400;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: "Fira Code";
+        src: url("./assets/fonts/FiraCode-Medium.woff2") format("woff2");
+        font-weight: 500;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: "Fira Code";
+        src: url("./assets/fonts/FiraCode-Bold.woff2") format("woff2");
+        font-weight: 700;
+        font-style: normal;
+      }
+      /* quick hack to put fira code as the prism display font */
+      pre.prism-code.builtin-prism-theme {
+        font-family: "Fira Code";
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="./bundle.js"></script>
+  </body>
+</html>
